@@ -8,6 +8,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
+import SessionWrapper from "@/app/SessionProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -34,7 +35,7 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+    <SessionWrapper>
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
@@ -61,6 +62,8 @@ export default function RootLayout({
           </div>
         </Providers>
       </body>
+    </SessionWrapper>
     </html>
+
   );
 }

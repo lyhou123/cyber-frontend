@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
   const { email, password } = body;
 
 
-  const respone = await fetch(`${process.env.NEXT_PUBLIC_API_URL}auth/login`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,18 +16,18 @@ export async function POST(req: NextRequest) {
     body: JSON.stringify({ email, password: password }),
   });
 
-  if (!respone.ok) {
+  if (!response.ok) {
     return NextResponse.json(
       {
-        message: "faild to login",
+        message: "failed to login",
       },
       {
-        status: respone.status,
+        status: response.status,
       },
     );
   }
 
-  const data = await respone.json();
+  const data = await response.json();
 
   const refreshToken = data?.data?.refreshToken || null;
   const accessToken = data?.data?.accessToken || null;
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
       refreshToken: refreshToken,
     },
     {
-      status: respone.status,
+      status: response.status,
       headers: {
         "Set-Cookie": serialized,
       },

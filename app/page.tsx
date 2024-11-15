@@ -6,8 +6,11 @@ export default function Home() {
 
   const { data: session } = useSession();
 
+  console.log(session);
+
 
   if (session) {
+    console.log("this is sessction= ", session);
     // rendering components for logged in users
     return (
       <div className="w-full h-screen flex flex-col justify-center items-center">
